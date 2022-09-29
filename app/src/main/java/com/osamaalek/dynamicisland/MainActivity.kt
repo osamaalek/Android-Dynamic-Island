@@ -10,40 +10,36 @@ import android.text.TextUtils.SimpleStringSplitter
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 
-
 class MainActivity : AppCompatActivity() {
 
     lateinit var buttonChangePosition: Button
-    lateinit var buttonTurnOn: Button
+    lateinit var buttonCheck: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         buttonChangePosition = findViewById(R.id.button_position)
-        buttonTurnOn = findViewById(R.id.button_turn_on)
+        buttonCheck = findViewById(R.id.button_check)
 
-        buttonTurnOn.setOnClickListener { turnOn() }
+        buttonCheck.setOnClickListener { checkPermissions() }
 
         buttonChangePosition.setOnClickListener {
             startActivity(Intent(this, CustomizeDIActivity::class.java))
         }
     }
 
-    private fun turnOn() {
-        if (Settings.canDrawOverlays(this) && isAccessibilitySettingsOn(this)) {
-            startForegroundService(Intent(this, DynamicIslandService::class.java))
-        } else if (!Settings.canDrawOverlays(this)) {
-            popupPermission()
-        } else {
+    private fun checkPermissions() {
+        if (!Settings.canDrawOverlays(this)) {
+            requestOverlayPermission()
+        } else if (!isAccessibilitySettingsOn(this)) {
             startActivity(Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS))
         }
     }
 
-    private fun popupPermission() {
+    private fun requestOverlayPermission() {
         val permissionIntent = Intent(
-            Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
-            Uri.parse("package:$packageName")
+            Settings.ACTION_MANAGE_OVERLAY_PERMISSION, Uri.parse("package:$packageName")
         )
         permissionIntent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
         startActivityForResult(permissionIntent, 8)
@@ -54,8 +50,7 @@ class MainActivity : AppCompatActivity() {
         val service = packageName + "/" + DynamicIslandService::class.java.canonicalName
         try {
             accessibilityEnabled = Settings.Secure.getInt(
-                mContext.applicationContext.contentResolver,
-                Settings.Secure.ACCESSIBILITY_ENABLED
+                mContext.applicationContext.contentResolver, Settings.Secure.ACCESSIBILITY_ENABLED
             )
         } catch (e: SettingNotFoundException) {
             e.printStackTrace()

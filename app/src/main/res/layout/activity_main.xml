@@ -17,11 +17,11 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <Button
-            android:id="@+id/button_turn_on"
+            android:id="@+id/button_check"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
-            android:text="Turn on" />
+            android:text="Check" />
 
         <Button
             android:id="@+id/button_position"
