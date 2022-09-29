@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="app/src/main/res/drawable/baseline_keyboard_arrow_down_24.xml" value="0.168" />
+        <entry key="app/src/main/res/drawable/bg_dynamic_island.xml" value="0.168" />
+        <entry key="app/src/main/res/drawable/bg_island.xml" value="0.168" />
+        <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.168" />
+        <entry key="app/src/main/res/layout/activity_customize_diactivity.xml" value="0.28532608695652173" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/view_dynamic_island.xml" value="0.28532608695652173" />
+        <entry key="app/src/main/res/xml/overlay_layout.xml" value="0.15520833333333334" />
+      </map>
+    </option>
+  </component>
+</project>
